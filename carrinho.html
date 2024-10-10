@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</li>
+                    <li><a href="produtos.html">Produtos</li>
+                    <li><a href="personalizacao.html">Personalização</li>
+                       <li><a href="Fidelidade.html">Fidelidade</li> 
+                    <li><a href="carrinho.html">Carrinho</li>
+                    <li><a href="checkout.html">Checkout</li> 
+                    <li><a href="Politicas.html">Politicas</li>
+   
+            </ul>
+        </nav>
+    </header>
+
+    <div class="cart-container">
+        <h2>Carrinho de Compras</h2>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Preço Unitário</th>
+                    <th>Subtotal</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+
+            </tbody>
+
+        </table>
+        <div class="cart-summary">
+            <h3>Total: R$ <span id="cart-total">0.00</span></h3>
+            <button class="checkout-btn">Finalizar Compras</button>
+
+        </div>
+
+    </div>
+     <script src="js/cart.js"></script>
+
+     <footer>
+        <p>&copy; 2024 Loja de Doces. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
