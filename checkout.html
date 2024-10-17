@@ -10,14 +10,13 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Inicio</li>
-                    <li><a href="produtos.html">Produtos</li>
-                    <li><a href="personalizacao.html">Personalização</li>
-                       <li><a href="Fidelidade.html">Fidelidade</li> 
-                    <li><a href="carrinho.html">Carrinho</li>
-                    <li><a href="checkout.html">Checkout</li> 
-                    <li><a href="Politicas.html">Politicas</li>
-   
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="personalizacao.html">Personalização</a></li>
+                <li><a href="fidelidade.html">Fidelidade</a></li>
+                <li><a href="carrinho.html">Carrinho</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="politicas.html">Políticas</a></li>
             </ul>
         </nav>
     </header>
@@ -32,95 +31,81 @@
                     <div class="form-group">
                         <label for="name">Nome Completo</label>
                         <input type="text" name="name" id="name" placeholder="Digite seu Nome Completo">
-
                     </div>
                     <div class="form-group">
                         <label for="city">Cidade</label>
                         <input type="text" name="city" id="city" placeholder="Digite sua Cidade">
-
                     </div>
                     <div class="form-group">
                         <label for="address">Endereço</label>
                         <input type="text" name="address" id="address" placeholder="Digite seu Endereço">
-
                     </div>
                     <div class="form-group">
                         <label for="postal-code">CEP</label>
                         <input type="text" name="postal-code" id="postal-code" placeholder="Digite seu CEP">
-
                     </div>
                     <div class="form-group">
                         <label for="state">Estado</label>
                         <input type="text" name="state" id="state" placeholder="Digite seu Estado">
-
                     </div>
                 </form>
-
             </div>
-
         </div>
-
     </div>
 
     <div class="checkout-section">
         <h3>Método de Pagamento</h3>
-        <form id="payment-form"></form>
-        <div class="payment-option">
-            <input type="radio" name="payment-method" id="credit-card"  value="credit-card" checked>>
-            <label for="card-name">Cartão de Crédito</label>
-
-        </div>
-        <div class="form-group credit-card-fields">
-            <label for="card-name">Nome no Cartão</label>
-            <input type="text" id="card-name" name="card-name" placeholder="Digite o nome no cartão" required>
-        </div>
-        <div class="form-group credit-card-fields">
-            <label for="card-number">Número do Cartão</label>
-            <input type="text" id="card-number" name="card-number" placeholder="Digite o número do cartão" required>
-        </div>
-        <div class="form-group credit-card-fields">
-            <label for="expiry-date">Data de Validade</label>
-            <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" required>
-        </div>
-        <div class="form-group credit-card-fields">
-            <label for="cvv">CVV</label>
-            <input type="text" id="cvv" name="cvv" placeholder="Digite o CVV" required>
-        </div>
-
-        <div class="payment-option">
-            <input type="radio" id="paypal" name="payment-method" value="paypal">
-            <label for="paypal">PayPal</label>
-        </div>
-
-        <div class="payment-option">
-            <input type="radio" id="boleto" name="payment-method" value="boleto">
-            <label for="boleto">Boleto Bancário</label>
-        </div>
-
-        <div class="payment-option">
-            <input type="radio" id="transferencia" name="payment-method" value="transferencia">
-            <label for="transferencia">Transferência Bancária</label>
-        </div>
-        <div class="checkout-section">
-            <h3>Resumo do Pedido</h3>
-            <div class="order-summary">
-                <ul>
-                    <li>Brigadeiro Gourmet- R$ 5.99</li>
-                    <li>Bolo de Cenoura - R$ 25.00</li>
-                    <li>Pé de Moleque - R$ 3.00</li>
-                </ul>
-                <h4>Total: R$ 33.99</h4>
+        <form id="payment-form">
+            <div class="payment-option">
+                <input type="radio" name="payment-method" id="credit-card" value="credit-card" checked>
+                <label for="credit-card">Cartão de Crédito</label>
             </div>
-            <button class="checkout-btn" id="finalizar-compra">Finalizar Compra</button>
+            <div class="form-group credit-card-fields">
+                <label for="card-name">Nome no Cartão</label>
+                <input type="text" id="card-name" name="card-name" placeholder="Digite o nome no cartão" required>
+            </div>
+            <div class="form-group credit-card-fields">
+                <label for="card-number">Número do Cartão</label>
+                <input type="text" id="card-number" name="card-number" placeholder="Digite o número do cartão" required>
+            </div>
+            <div class="form-group credit-card-fields">
+                <label for="expiry-date">Data de Validade</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" required>
+            </div>
+            <div class="form-group credit-card-fields">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="Digite o CVV" required>
+            </div>
+
+            <div class="payment-option">
+                <input type="radio" id="paypal" name="payment-method" value="paypal">
+                <label for="paypal">PayPal</label>
+            </div>
+
+            <div class="payment-option">
+                <input type="radio" id="boleto" name="payment-method" value="boleto">
+                <label for="boleto">Boleto Bancário</label>
+            </div>
+
+            <div class="payment-option">
+                <input type="radio" id="transferencia" name="payment-method" value="transferencia">
+                <label for="transferencia">Transferência Bancária</label>
+            </div>
+        </form>
+    </div>
+
+    <div class="checkout-section">
+        <h3>Resumo do Pedido</h3>
+        <div class="order-summary">
+            
         </div>
+        <button class="checkout-btn" id="finalizar-compra">Finalizar Compra</button>
     </div>
-</div>
 
-    </div>
-    <script src="js/checkout.js"></script>
-
+    
     <footer>
         <p>&copy; 2024 Loja de Doces. Todos os direitos reservados.</p>
     </footer>
+    <script src="checkout.js" defer></script> 
 </body>
 </html>
