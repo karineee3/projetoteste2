@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', onInit);
 
 let cart = [
-    {id: 1, nome: 'Brigadeiro Gourmet', preco: 5.00, quantidade: 3, imagem: ''},
-    {id: 2, nome: 'Bolo de Cenoura', preco: 25.00, quantidade: 2, imagem: ''}
+    {id: 1, nome: '', preco: 0, quantidade: 0, imagem: ''},
+    {id: 2, nome: '', preco: 0, quantidade: 0, imagem: ''}
 ];
 
 function renderCart() {
