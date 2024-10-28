@@ -1,51 +1,66 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Produtos</title>
+    <title>Produtos - Doce Império</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css"> <!-- Adicione seu CSS personalizado aqui -->
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="personalizacao.html">Personalização</a></li>
-                <li><a href="clube.html">Clube de Doces</a></li>
-                <li><a href="carrinho.html">Carrinho</a></li>
-                <li><a href="checkout.html">Checkout</a></li>
-                <li><a href="contato.html">Contato</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">Doce Império</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="produtos.html">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.html">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sobre.html">Sobre Nós</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="carrinho.html">Carrinho (<span id="contador-carrinho">0</span>)</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
 
-    <section class="produto-header">
-        <h1>Nossos Produtos</h1>
-        <div class="filtros">
-            <input type="text" id="search" placeholder="Pesquisar Produto...">
-            <select id="categoria-filter">
-                <option value="todos">Todas as Categorias</option>
-                <option value="brigadeiros">Brigadeiros</option>
-                <option value="bombons">Bombons</option>
-                <option value="bolos">Bolos</option>
-                <option value="cupcakes">Cupcakes</option>
-            </select>
-        </div>
-    </section>
-    
-    <section class="galeria-produtos" id="galeria-produtos">
-        <!-- Os produtos serão adicionados dinamicamente -->
-    </section>
+    <main>
+        <section class="container mt-5">
+            <h2 class="text-center">Produtos Disponíveis na Loja</h2>
+            <div class="row mt-4" id="produtos-lista">
+                <!-- Os produtos serão injetados aqui pelo JavaScript -->
+            </div>
+        </section>
+    </main>
 
-    <footer>
-        <p>&copy; 2024 Loja de Doces. Todos os direitos reservados.</p>
-        <li><a href="politicas.html">Políticas de Privacidade</a></li>
-        
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Doces Deliciosos. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="produtos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/produtos.js"></script> <!-- O seu script JavaScript -->
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
 

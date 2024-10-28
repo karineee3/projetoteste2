@@ -1,47 +1,60 @@
-// Array de produtos
+// Array de produtos (você pode preencher com seus produtos reais)
 const produtos = [
-    { nome: "Brigadeiro", preco: 5.00, categoria: "brigadeiros", img: "" },
-    { nome: "Bombom", preco: 3.00, categoria: "bombons", img: "" },
-    { nome: "Bolo de Chocolate", preco: 25.00, categoria: "bolos", img: "" },
-    { nome: "Cupcake de Baunilha", preco: 5.00, categoria: "cupcakes", img: "" },
-    { nome: "Bolo de Morango", preco: 25.00, categoria: "bolos", img: ""},
+    { id: 1, nome: "Bolo de Chocolate", preco: 29.90 },
+    { id: 2, nome: "Pudim", preco: 12.50 },
+    { id: 3, nome: "Brigadeiro", preco: 1.50 },
+    { id: 4, nome: "Bolo de Cenoura", preco: 25.00 },
+    { id: 5, nome: "Coxinha", preco: 5.00 }
 ];
 
-// Função para mostrar os produtos
-function mostrarProdutos(produtosFiltrados) {
-    const galeria = document.getElementById("galeria-produtos");
-    galeria.innerHTML = ""; // Limpa a galeria antes de adicionar os produtos
-    produtosFiltrados.forEach(produto => {
-        const div = document.createElement("div");
-        div.className = "produto";
-        div.innerHTML = `
-            <img src="${produto.img}" alt="${produto.nome}">
-            <h3>${produto.nome}</h3>
-            <p>R$ ${produto.preco.toFixed(2)}</p>
-            <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
-        `;
-        galeria.appendChild(div);
+// Recupera o carrinho do localStorage
+let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+// Atualiza o contador do carrinho
+const contadorCarrinho = document.getElementById('contador-carrinho');
+contadorCarrinho.textContent = carrinho.length;
+
+// Função para exibir os produtos
+function mostrarProdutos() {
+    const produtosLista = document.getElementById('produtos-lista');
+    produtosLista.innerHTML = ''; // Limpa a lista antes de exibir
+
+    // Loop pelos produtos para gerar o HTML
+    produtos.forEach((produto) => {
+        const produtoHTML = `
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${produto.nome}</h5>
+                        <p class="card-text">Preço: R$ ${produto.preco.toFixed(2)}</p>
+                        <button class="btn btn-primary" onclick="adicionarAoCarrinho(${produto.id})">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            </div>`;
+        produtosLista.innerHTML += produtoHTML; // Adiciona o produto à lista
     });
 }
 
-// Função para filtrar produtos
-function filtrarProdutos() {
-    const filtroNome = document.getElementById("search").value.toLowerCase();
-    const filtroCategoria = document.getElementById("categoria-filter").value;
-
-    const produtosFiltrados = produtos.filter(produto => {
-        const nomeCorreto = produto.nome.toLowerCase().includes(filtroNome);
-        const categoriaCorreta = filtroCategoria === "todos" || produto.categoria === filtroCategoria;
-        return nomeCorreto && categoriaCorreta;
-    });
-
-    mostrarProdutos(produtosFiltrados);
+// Função para adicionar produto ao carrinho
+function adicionarAoCarrinho(produtoId) {
+    const produto = produtos.find(p => p.id === produtoId); // Encontra o produto pelo ID
+    if (produto) {
+        carrinho.push(produto); // Adiciona o produto ao carrinho
+        localStorage.setItem('carrinho', JSON.stringify(carrinho)); // Atualiza o localStorage
+        contadorCarrinho.textContent = carrinho.length; // Atualiza o contador
+        alert(`${produto.nome} foi adicionado ao carrinho!`); // Alerta ao usuário
+    }
 }
 
-// Adicionando eventos
-document.getElementById("search").addEventListener("input", filtrarProdutos);
-document.getElementById("categoria-filter").addEventListener("change", filtrarProdutos);
+// Inicializa a exibição dos produtos ao carregar a página
+mostrarProdutos();
 
-// Mostrar todos os produtos inicialmente
-mostrarProdutos(produtos);
+
+
+
+
+
+
+
+
 

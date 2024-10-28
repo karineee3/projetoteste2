@@ -1,70 +1,61 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Contato - Doces Karine</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Contato - Doce Império</title>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="personalizacao.html">Personalização</a></li>
-                <li><a href="clube.html">Clube de Doces</a></li> 
-                <li><a href="carrinho.html">Carrinho</a></li>
-                <li><a href="checkout.html">Checkout</a></li> 
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="contato.html">Contato</a></li>
-            </ul>
-        </nav>
-        <div class="contato-header">
-           
-            <div class="redes-sociais-header">
-                <a href="https://www.instagram.com/mkarinee_" target="_blank">Instagram</a>
-                <a href="https://www.twitter.com/Mondiinii" target="_blank">Twitter</a>
+        <h1 class="text-center mt-4">Entre em Contato</h1>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">Doce Império</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="produtos.html">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+                    
+                    <li class="nav-item"><a class="nav-link" href="sobre.html">Sobre Nós</a></li>
+                </ul>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <main>
-        <div class="container">
-            <h1>Entre em Contato Conosco</h1>
-            
-            <section class="informacoes-contato">
-                <h2>Informações de Contato</h2>
-                <p>Telefone: <strong>(48) 996803140</strong></p>
-                <p>Email: <strong><a href="">contato@doceskarine.com</a></strong></p>
-                <p>Siga-nos nas redes sociais:</p>
-                <ul>
-                    <li><a href="https://www.instagram.com/mkarinee_" target="_blank">Instagram</a></li>
-                    <li><a href="https://www.twitter.com/Mondiinii" target="_blank">Twitter</a></li>
-                </ul>
-            </section>
-
-            <section class="formulario-contato">
-                <h2>Formulário de Contato</h2>
-                <form action="#" method="post">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required>
-
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-
-                    <label for="mensagem">Mensagem:</label>
-                    <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
-
-                    <button type="submit">Enviar</button>
-                </form>
-            </section>
-        </div>
+    <main class="container mt-5">
+        <h2 class="text-center">Estamos aqui para ajudar!</h2>
+        <p class="text-center">Preencha o formulário abaixo e entraremos em contato o mais breve possível.</p>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Mensagem</label>
+                <textarea class="form-control" id="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+        </form>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Loja de Doces. Todos os direitos reservados.</p>
-        <li><a href="politicas.html">Políticas de Privacidade</a></li>
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Doces Karine. Todos os direitos reservados.</p>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
+
+

@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar Senha - Doces Karine</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Recuperação de Senha - Doces Deliciosos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="main-body">
-    <div class="form-wrapper">
-        <h2 class="title">Recuperar Senha</h2>
-        <form id="recover-form">
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" required placeholder="Digite seu e-mail">
-            <button type="submit">Enviar Link de Recuperação</button>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Recuperação de Senha</h2>
+        <form id="recuperarSenhaForm">
+            <div class="form-group">
+                <label for="emailRecuperar">Email:</label>
+                <input type="email" class="form-control" id="emailRecuperar" required>
+            </div>
+            <button type="submit" class="btn btn-warning btn-block">Recuperar Senha</button>
+            <p class="text-center">
+                Lembrei da minha senha! <a href="login.html">Login</a>
+            </p>
         </form>
-        <p id="message" class="hidden"></p>
-        <p><a href="login.html">Voltar para Login</a></p>
     </div>
-    <script src="recuperarsenha.js"></script>
-    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
+
 
