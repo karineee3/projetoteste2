@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded' , onInit)
+document.addEventListener('DOMContentLoaded', onInit);
+
 // Recupera o carrinho do localStorage
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
@@ -40,6 +41,15 @@ function mostrarCarrinho() {
     document.getElementById('total').textContent = total.toFixed(2);
 }
 
+// Função para adicionar produto ao carrinho
+function adicionarAoCarrinho(produto) {
+    carrinho.push(produto); // Adiciona o produto ao carrinho
+    localStorage.setItem('carrinho', JSON.stringify(carrinho)); // Atualiza o localStorage
+    const contadorCarrinho = document.getElementById('contador-carrinho');
+    contadorCarrinho.textContent = carrinho.length; // Atualiza o contador
+    mostrarCarrinho(); // Atualiza a exibição do carrinho
+}
+
 // Função para remover um produto do carrinho
 function removerDoCarrinho(index) {
     carrinho.splice(index, 1); // Remove o produto pelo índice
@@ -59,7 +69,10 @@ document.getElementById('finalizar-compra').addEventListener('click', function (
 });
 
 // Inicializa a exibição dos itens do carrinho ao carregar a página
-mostrarCarrinho();
+function onInit() {
+    mostrarCarrinho(); // Chama para mostrar o carrinho ao inicializar
+}
+
 
 
 
