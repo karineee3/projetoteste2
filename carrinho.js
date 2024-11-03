@@ -1,21 +1,30 @@
-document.addEventListener('DOMContentLoaded', onInit);
+document.addEventListener('DOMContentLoaded', function() {
+    onInit(); // Chama a função onInit quando o DOM estiver carregado
+});
 
 // Recupera o carrinho do localStorage
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
 // Atualiza o contador do carrinho na navbar
 const contadorCarrinho = document.getElementById('contador-carrinho');
-contadorCarrinho.textContent = carrinho.length;
+if (contadorCarrinho) {
+    contadorCarrinho.textContent = carrinho.length;
+}
 
 // Função para exibir os itens do carrinho
 function mostrarCarrinho() {
     const carrinhoLista = document.getElementById('carrinho-lista');
+    const totalElemento = document.getElementById('total');
+
+    // Verifica se os elementos existem
+    if (!carrinhoLista || !totalElemento) return;
+
     carrinhoLista.innerHTML = ''; // Limpa a lista antes de exibir
 
     // Verifica se o carrinho está vazio
     if (carrinho.length === 0) {
         carrinhoLista.innerHTML = '<p class="text-center">Seu carrinho está vazio.</p>';
-        document.getElementById('total').textContent = '0.00'; // Atualiza o total para 0
+        totalElemento.textContent = '0.00'; // Atualiza o total para 0
         return;
     }
 
@@ -38,15 +47,16 @@ function mostrarCarrinho() {
     });
 
     // Atualiza o total na página
-    document.getElementById('total').textContent = total.toFixed(2);
+    totalElemento.textContent = total.toFixed(2);
 }
 
 // Função para adicionar produto ao carrinho
 function adicionarAoCarrinho(produto) {
     carrinho.push(produto); // Adiciona o produto ao carrinho
     localStorage.setItem('carrinho', JSON.stringify(carrinho)); // Atualiza o localStorage
-    const contadorCarrinho = document.getElementById('contador-carrinho');
-    contadorCarrinho.textContent = carrinho.length; // Atualiza o contador
+    if (contadorCarrinho) {
+        contadorCarrinho.textContent = carrinho.length; // Atualiza o contador
+    }
     mostrarCarrinho(); // Atualiza a exibição do carrinho
 }
 
@@ -55,23 +65,28 @@ function removerDoCarrinho(index) {
     carrinho.splice(index, 1); // Remove o produto pelo índice
     localStorage.setItem('carrinho', JSON.stringify(carrinho)); // Atualiza o localStorage
     mostrarCarrinho(); // Atualiza a exibição do carrinho
-    const contadorCarrinho = document.getElementById('contador-carrinho');
-    contadorCarrinho.textContent = carrinho.length; // Atualiza o contador
+    if (contadorCarrinho) {
+        contadorCarrinho.textContent = carrinho.length; // Atualiza o contador
+    }
 }
 
 // Evento para finalizar a compra
-document.getElementById('finalizar-compra').addEventListener('click', function () {
-    if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio. Adicione produtos antes de finalizar a compra.");
-    } else {
-        window.location.href = "pagamento.html"; // Redireciona para a página de pagamento
-    }
-});
+const finalizarCompraBtn = document.getElementById('finalizar-compra');
+if (finalizarCompraBtn) {
+    finalizarCompraBtn.addEventListener('click', function () {
+        if (carrinho.length === 0) {
+            alert("Seu carrinho está vazio. Adicione produtos antes de finalizar a compra.");
+        } else {
+            window.location.href = "pagamento.html"; // Redireciona para a página de pagamento
+        }
+    });
+}
 
 // Inicializa a exibição dos itens do carrinho ao carregar a página
 function onInit() {
     mostrarCarrinho(); // Chama para mostrar o carrinho ao inicializar
 }
+
 
 
 

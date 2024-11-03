@@ -19,13 +19,37 @@ function addToCart(product) {
     updateCartCount();
 }
 
-// Função para exibir os produtos na página
-function displayProducts(products) {
-    const productsContainer = document.querySelector('.row');
+// Função para manipular o envio da newsletter
+function handleNewsletterSubscription(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
 
+    const email = document.getElementById("email").value;
+
+    // Exibe uma mensagem de sucesso
+    const message = document.getElementById("message");
+    message.textContent = `Obrigado por se inscrever, ${email}!`;
+    message.classList.add("alert", "alert-success");
+
+    // Limpa o campo de entrada
+    document.getElementById("email").value = "";
+}
+
+// Adiciona o evento ao formulário de newsletter
+document.querySelector(".form-inline").addEventListener("submit", handleNewsletterSubscription);
+
+// Exemplo de produtos destacados
+const featuredProducts = [
+    { id: 1, name: 'Doce de Leite', price: 10.00, image: 'doces/2072308678-doce-de-leite-cremoso (1).webp' },
+    { id: 2, name: 'Brigadeiro Gourmet', price: 15.00, image: 'brgadeirogourmet/brigadeirogourmet2.webp' },
+    { id: 3, name: 'Bolo de Pote', price: 20.00, image: 'doces/355179-original.jpg' }
+];
+
+// Função para exibir produtos destacados
+function displayFeaturedProducts(products) {
+    const productsContainer = document.querySelector('.row');
     products.forEach(product => {
         const productCard = document.createElement('div');
-        productCard.className = 'col-md-4 mb-4';
+        productCard.className = 'col-md-4';
         productCard.innerHTML = `
             <div class="card">
                 <img src="${product.image}" class="card-img-top" alt="${product.name}">
@@ -40,64 +64,9 @@ function displayProducts(products) {
     });
 }
 
-// Função para lidar com o cadastro de produtos
-function handleProductRegistration(event) {
-    event.preventDefault(); // Impede o envio do formulário
+// Inicializa a exibição dos produtos destacados
+displayFeaturedProducts(featuredProducts);
 
-    const nome = document.getElementById('nome').value;
-    const preco = parseFloat(document.getElementById('preco').value);
-
-    // Simular um ID para o produto, você pode implementar um sistema de ID mais robusto
-    const newProduct = { id: Date.now(), name: nome, price: preco };
-    
-    // Exibe o novo produto na página
-    displayProducts([newProduct]);
-
-    // Limpa o formulário
-    document.getElementById('cadastro-form').reset();
-}
-
-// Função para alternar a exibição da seção de cadastro
-function toggleCadastro() {
-    const cadastroSection = document.getElementById('cadastro-section');
-    cadastroSection.style.display = cadastroSection.style.display === 'none' ? 'block' : 'none';
-}
-
-// Função para lidar com o envio da newsletter
-function handleNewsletterSubscription(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
-
-    const email = document.getElementById("email").value;
-
-    // Aqui você pode adicionar lógica para enviar o email, por exemplo, usando uma API
-
-    // Exibe uma mensagem de sucesso
-    const message = document.getElementById("message");
-    message.textContent = `Obrigado por se inscrever, ${email}!`;
-    message.classList.add("alert", "alert-success");
-    
-    // Limpa o campo de entrada
-    document.getElementById("newsletterForm").reset();
-}
-
-// Adiciona o evento para o formulário de cadastro de produtos
-document.getElementById('cadastro-form').addEventListener('submit', handleProductRegistration);
-
-// Adiciona o evento ao botão de cadastro
-document.getElementById('toggle-cadastro').addEventListener('click', toggleCadastro);
-
-// Adiciona o evento para o formulário de newsletter
-document.getElementById("newsletterForm").addEventListener("submit", handleNewsletterSubscription);
-
-// Exibir produtos iniciais (você pode carregar isso de um banco de dados ou API)
-const initialProducts = [
-    { id: 1, name: 'Doce de Leite', price: 10.00, image: 'doces/2072308678-doce-de-leite-cremoso (1).webp' },
-    { id: 2, name: 'Brigadeiro Gourmet', price: 15.00, image: 'brgadeirogourmet/brigadeirogourmet2.webp' },
-    { id: 3, name: 'Bolo de Pote', price: 20.00, image: 'doces/355179-original.jpg' }
-];
-
-// Inicializa a exibição dos produtos
-displayProducts(initialProducts);
 
 
 

@@ -1,12 +1,14 @@
-// pagamento.js
 document.getElementById('form-pagamento').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita o envio do formulário
 
     // Obtém os valores dos campos do formulário
     const nome = document.getElementById('nome').value.trim();
-    const numeroCartao = document.getElementById('numero-cartao').value.trim();
+    let numeroCartao = document.getElementById('numero-cartao').value.trim();
     const dataExpiracao = document.getElementById('data-expiracao').value.trim();
     const cvv = document.getElementById('cvv').value.trim();
+
+    // Remove espaços ou caracteres não numéricos do número do cartão
+    numeroCartao = numeroCartao.replace(/\D/g, '');
 
     // Validação simples dos campos
     if (nome === '' || numeroCartao === '' || dataExpiracao === '' || cvv === '') {
@@ -36,9 +38,11 @@ document.getElementById('form-pagamento').addEventListener('submit', function(ev
     }
 
     // Simula o sucesso do pagamento
-    alert('Pagamento realizado com sucesso!');
+    alert('Obrigado pela compra!');
 
-    // Redireciona para a página de confirmação ou de finalização
-    window.location.href = "index.html"; // Mude para a página que desejar após o pagamento
+    // Redireciona para a página inicial após 2 segundos
+    setTimeout(() => {
+        window.location.href = "index.html"; // Redireciona para a página inicial
+    }, 2000); // Atraso de 2000 ms (2 segundos)
 });
 
