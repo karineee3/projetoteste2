@@ -1,24 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicializa a exibição dos produtos
     listarProdutos();
-
-    // Atualiza o contador do carrinho ao carregar a página
     atualizarContadorCarrinho();
 });
 
-// Array de produtos (você pode preencher com seus produtos reais)
-const produtos = [
-    { id: 1, nome: "Bolo de Chocolate", preco: 29.90, descricao: "Delicioso bolo de chocolate" },
-    { id: 2, nome: "Pudim", preco: 12.50, descricao: "Pudim com calda de caramelo" },
-    { id: 3, nome: "Brigadeiro", preco: 1.50, descricao: "Brigadeiro tradicional" },
-    { id: 4, nome: "Bolo de Cenoura", preco: 25.00, descricao: "Bolo de cenoura com cobertura de chocolate" },
-    { id: 5, nome: "Coxinha", preco: 5.00, descricao: "Coxinha com recheio de frango" }
-];
-
-// Recupera o carrinho do localStorage
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
-// Função para atualizar o contador do carrinho
+// Atualiza o contador do carrinho
 function atualizarContadorCarrinho() {
     const contadorCarrinho = document.getElementById('contador-carrinho');
     if (contadorCarrinho) {
@@ -26,11 +13,14 @@ function atualizarContadorCarrinho() {
     }
 }
 
-// Função para exibir os produtos na página
+// Lista produtos cadastrados no localStorage
 function listarProdutos() {
     const listaProdutosDiv = document.getElementById('listaProdutos');
     if (listaProdutosDiv) {
         listaProdutosDiv.innerHTML = '';
+
+        // Recupera os produtos do localStorage
+        const produtos = JSON.parse(localStorage.getItem('produtos')) || []; // Verifique se a chave 'produtos' está correta
 
         if (produtos.length === 0) {
             listaProdutosDiv.innerHTML = '<p>Nenhum produto disponível.</p>';
@@ -38,24 +28,35 @@ function listarProdutos() {
         }
 
         produtos.forEach(produto => {
-            const produtoHTML = `
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">${produto.nome}</h5>
-                            <p class="card-text">${produto.descricao}</p>
-                            <p class="card-text">Preço: R$ ${produto.preco.toFixed(2)}</p>
-                            <button class="btn btn-primary" onclick="adicionarAoCarrinho(${produto.id})">Adicionar ao Carrinho</button>
-                        </div>
+            const produtoDiv = document.createElement('div');
+            produtoDiv.classList.add('col-md-4', 'mb-4');
+            produtoDiv.innerHTML = `
+                <div class="card">
+                    <img src="${produto.imagem}" class="card-img-top" alt="${produto.nome}"> <!-- Adicione a imagem aqui -->
+                    <div class="card-body">
+                        <h5 class="card-title">${produto.nome}</h5>
+                        <p class="card-text">${produto.descricao}</p>
+                        <p class="card-text">Preço: R$ ${produto.preco.toFixed(2)}</p>
+                        <button class="btn btn-primary" data-id="${produto.id}">Adicionar ao Carrinho</button>
                     </div>
                 </div>`;
-            listaProdutosDiv.innerHTML += produtoHTML;
+
+            listaProdutosDiv.appendChild(produtoDiv);
+        });
+
+        // Adiciona event listeners para os botões
+        const botoesAdicionar = listaProdutosDiv.querySelectorAll('button');
+        botoesAdicionar.forEach(botao => {
+            botao.addEventListener('click', function() {
+                adicionarAoCarrinho(parseInt(this.getAttribute('data-id')));
+            });
         });
     }
 }
 
-// Função para adicionar um produto ao carrinho
+// Adiciona um produto ao carrinho
 function adicionarAoCarrinho(produtoId) {
+    const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
     const produto = produtos.find(p => p.id === produtoId);
     if (produto) {
         carrinho.push(produto);
@@ -64,6 +65,9 @@ function adicionarAoCarrinho(produtoId) {
         alert(`${produto.nome} foi adicionado ao carrinho!`);
     }
 }
+
+
+
 
 
 

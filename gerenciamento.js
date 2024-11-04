@@ -1,91 +1,111 @@
-// Simulação de autenticação do usuário
-const usuarioAutenticado = true; // Mude para false para ocultar
+// gerenciamento.js
 
-// Função para verificar e carregar produtos do localStorage
-function carregarProdutos() {
-    const produtos = JSON.parse(localStorage.getItem('produtos')) || [];
-    return produtos;
-}
-
-// Função para salvar produtos no localStorage
-function salvarProdutos(produtos) {
-    localStorage.setItem('produtos', JSON.stringify(produtos));
-}
+// Array para armazenar os produtos
+let produtos = [];
 
 // Função para cadastrar um produto
 function cadastrarProduto(event) {
-    event.preventDefault();
+    event.preventDefault(); // Evita o envio do formulário
+
+    // Coleta os dados do formulário
     const nome = document.getElementById('nomeProduto').value;
     const descricao = document.getElementById('descricaoProduto').value;
     const preco = parseFloat(document.getElementById('precoProduto').value);
+    const imagem = document.getElementById('imagemProduto').files[0];
 
-    const produtos = carregarProdutos(); // Carrega produtos existentes
-    const novoProduto = { nome, descricao, preco };
-    produtos.push(novoProduto); // Adiciona novo produto
-    salvarProdutos(produtos); // Salva a lista atualizada
-    listarProdutos(); // Atualiza a lista de produtos no gerenciamento
+    // Cria um objeto produto
+    const novoProduto = {
+        id: produtos.length + 1, // Gera um ID simples
+        nome,
+        descricao,
+        preco,
+        imagem: URL.createObjectURL(imagem) // Cria um URL temporário para a imagem
+    };
+
+    // Adiciona o produto ao array
+    produtos.push(novoProduto);
+    alert('Produto cadastrado com sucesso!');
+
+       // Redireciona para a página de produtos
+       window.location.href = 'produtos.html';
+
+    // Limpa o formulário
     document.getElementById('cadastroProduto').reset();
 }
 
 // Função para editar um produto
 function editarProduto(event) {
-    event.preventDefault();
+    event.preventDefault(); // Evita o envio do formulário
+
     const id = parseInt(document.getElementById('idProduto').value);
-    const nome = document.getElementById('novoNomeProduto').value;
-    const descricao = document.getElementById('novaDescricaoProduto').value;
-    const preco = parseFloat(document.getElementById('novoPrecoProduto').value);
+    const novoNome = document.getElementById('novoNomeProduto').value;
+    const novaDescricao = document.getElementById('novaDescricaoProduto').value;
+    const novoPreco = parseFloat(document.getElementById('novoPrecoProduto').value);
+    const novaImagem = document.getElementById('novaImagemProduto').files[0];
 
-    const produtos = carregarProdutos(); // Carrega produtos existentes
-
-    if (id >= 0 && id < produtos.length) {
-        produtos[id] = { nome, descricao, preco }; // Atualiza o produto
-        salvarProdutos(produtos); // Salva a lista atualizada
-        listarProdutos(); // Atualiza a lista de produtos no gerenciamento
-        document.getElementById('edicaoProduto').reset();
+    // Procura o produto pelo ID
+    const produto = produtos.find(p => p.id === id);
+    if (produto) {
+        // Atualiza os dados do produto
+        produto.nome = novoNome;
+        produto.descricao = novaDescricao;
+        produto.preco = novoPreco;
+        if (novaImagem) {
+            produto.imagem = URL.createObjectURL(novaImagem);
+        }
+        alert('Produto editado com sucesso!');
     } else {
-        alert('Produto não encontrado.');
+        alert('Produto não encontrado!');
     }
+
+    // Limpa o formulário
+    document.getElementById('edicaoProduto').reset();
 }
 
 // Função para remover um produto
 function removerProduto(event) {
-    event.preventDefault();
+    event.preventDefault(); // Evita o envio do formulário
+
     const id = parseInt(document.getElementById('idProdutoExcluir').value);
 
-    const produtos = carregarProdutos(); // Carrega produtos existentes
+    // Filtra o produto a ser removido
+    produtos = produtos.filter(p => p.id !== id);
+    alert('Produto removido com sucesso!');
 
-    if (id >= 0 && id < produtos.length) {
-        produtos.splice(id, 1); // Remove o produto
-        salvarProdutos(produtos); // Salva a lista atualizada
-        listarProdutos(); // Atualiza a lista de produtos no gerenciamento
-        document.getElementById('idProdutoExcluir').value = '';
-    } else {
-        alert('Produto não encontrado.');
-    }
+    // Limpa o formulário
+    document.getElementById('idProdutoExcluir').value = '';
 }
 
-// Função para listar produtos
+// Função para listar os produtos
 function listarProdutos() {
-    const produtos = carregarProdutos(); // Carrega produtos existentes
-    const lista = document.getElementById('listaProdutos');
-    lista.innerHTML = ''; // Limpa a lista
+    const listaProdutos = document.getElementById('listaProdutos');
+    listaProdutos.innerHTML = ''; // Limpa a lista existente
 
-    if (produtos.length === 0) {
-        lista.innerHTML = '<p>Nenhum produto cadastrado.</p>';
-    } else {
-        produtos.forEach((produto, index) => {
-            lista.innerHTML += `<p><strong>ID:</strong> ${index} <strong>Nome:</strong> ${produto.nome} <strong>Descrição:</strong> ${produto.descricao} <strong>Preço:</strong> R$ ${produto.preco.toFixed(2)}</p>`;
-        });
-    }
+    // Cria elementos de lista para cada produto
+    produtos.forEach(produto => {
+        const divProduto = document.createElement('div');
+        divProduto.className = 'produto';
+        divProduto.innerHTML = `
+            <h5>${produto.nome}</h5>
+            <p>${produto.descricao}</p>
+            <p>Preço: R$ ${produto.preco.toFixed(2)}</p>
+            <img src="${produto.imagem}" alt="${produto.nome}" style="width: 100px; height: auto;">
+            <hr>
+        `;
+        listaProdutos.appendChild(divProduto);
+    });
 }
 
-// Exibir o gerenciamento de produtos apenas para usuários autenticados
-if (!usuarioAutenticado) {
-    alert('Você não tem permissão para acessar esta página.');
-    window.location.href = 'produtos.html'; // Redireciona para a página de produtos
-} else {
-    listarProdutos(); // Carrega e exibe produtos se o usuário estiver autenticado
-}
+// Chama a função listarProdutos sempre que a aba de listagem é ativada
+document.getElementById('listar-tab').addEventListener('click', listarProdutos);
+
+
+
+
+
+
+
+
 
 
 

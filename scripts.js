@@ -1,71 +1,46 @@
-// Inicialização do carrinho
-let cart = [];
+// scripts.js
+
+// Variável para armazenar o contador do carrinho
+let contadorCarrinho = 0;
 
 // Função para atualizar o contador do carrinho
-function updateCartCount() {
-    const cartCountElement = document.getElementById('contador-carrinho');
-    cartCountElement.innerText = cart.length;
+function atualizarContadorCarrinho() {
+    const contadorElement = document.getElementById('contador-carrinho');
+    contadorElement.textContent = contadorCarrinho;
 }
 
-// Função para adicionar um produto ao carrinho
-function addToCart(product) {
-    const existingProduct = cart.find(item => item.id === product.id);
-    
-    if (existingProduct) {
-        existingProduct.quantity += 1; // Aumenta a quantidade se já existir
+// Função para simular a adição de produtos ao carrinho
+function adicionarAoCarrinho() {
+    contadorCarrinho++;
+    atualizarContadorCarrinho();
+}
+
+// Função para lidar com a inscrição na newsletter
+function inscreverNewsletter(event) {
+    event.preventDefault(); // Previne o envio do formulário
+    const emailInput = document.getElementById('email');
+    const messageElement = document.getElementById('message');
+
+    if (emailInput.value) {
+        messageElement.textContent = `Obrigado por se inscrever, ${emailInput.value}!`;
+        emailInput.value = ''; // Limpa o campo de email
     } else {
-        cart.push({ ...product, quantity: 1 }); // Adiciona o novo produto
+        messageElement.textContent = 'Por favor, insira um e-mail válido.';
     }
-    updateCartCount();
 }
 
-// Função para manipular o envio da newsletter
-function handleNewsletterSubscription(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
+// Adiciona event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    // Atualiza o contador do carrinho ao carregar a página
+    atualizarContadorCarrinho();
 
-    const email = document.getElementById("email").value;
+    // Adiciona evento de clique para o botão de inscrição
+    const form = document.querySelector('.newsletter form');
+    form.addEventListener('submit', inscreverNewsletter);
 
-    // Exibe uma mensagem de sucesso
-    const message = document.getElementById("message");
-    message.textContent = `Obrigado por se inscrever, ${email}!`;
-    message.classList.add("alert", "alert-success");
-
-    // Limpa o campo de entrada
-    document.getElementById("email").value = "";
-}
-
-// Adiciona o evento ao formulário de newsletter
-document.querySelector(".form-inline").addEventListener("submit", handleNewsletterSubscription);
-
-// Exemplo de produtos destacados
-const featuredProducts = [
-    { id: 1, name: 'Doce de Leite', price: 10.00, image: 'doces/2072308678-doce-de-leite-cremoso (1).webp' },
-    { id: 2, name: 'Brigadeiro Gourmet', price: 15.00, image: 'brgadeirogourmet/brigadeirogourmet2.webp' },
-    { id: 3, name: 'Bolo de Pote', price: 20.00, image: 'doces/355179-original.jpg' }
-];
-
-// Função para exibir produtos destacados
-function displayFeaturedProducts(products) {
-    const productsContainer = document.querySelector('.row');
-    products.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'col-md-4';
-        productCard.innerHTML = `
-            <div class="card">
-                <img src="${product.image}" class="card-img-top" alt="${product.name}">
-                <div class="card-body">
-                    <h5 class="card-title">${product.name}</h5>
-                    <p class="card-text">Preço: R$${product.price.toFixed(2)}</p>
-                    <button class="btn btn-primary" onclick="addToCart({ id: ${product.id}, name: '${product.name}', price: ${product.price} })">Adicionar ao Carrinho</button>
-                </div>
-            </div>
-        `;
-        productsContainer.appendChild(productCard);
-    });
-}
-
-// Inicializa a exibição dos produtos destacados
-displayFeaturedProducts(featuredProducts);
+    // Aqui você pode simular a adição de produtos ao carrinho (por exemplo, quando um botão de "Adicionar ao Carrinho" for clicado)
+    // adicione chamadas para a função adicionarAoCarrinho() onde necessário
+});
 
 
 

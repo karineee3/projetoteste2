@@ -68,6 +68,10 @@
                             <label for="precoProduto">Preço do Produto</label>
                             <input type="number" class="form-control" id="precoProduto" step="0.01" required>
                         </div>
+                        <div class="form-group">
+                            <label for="imagemProduto">Imagem do Produto</label>
+                            <input type="file" class="form-control-file" id="imagemProduto" accept="image/*" required>
+                        </div>
                         <button type="submit" class="btn btn-success">Cadastrar Produto</button>
                     </form>
                 </div>
@@ -90,6 +94,10 @@
                         <div class="form-group">
                             <label for="novoPrecoProduto">Novo Preço do Produto</label>
                             <input type="number" class="form-control" id="novoPrecoProduto" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="novaImagemProduto">Nova Imagem do Produto</label>
+                            <input type="file" class="form-control-file" id="novaImagemProduto" accept="image/*">
                         </div>
                         <button type="submit" class="btn btn-warning">Editar Produto</button>
                     </form>
@@ -119,9 +127,13 @@
         <p>&copy; 2024 Doce Império. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/gerenciamento.js"></script>
+    <script src="gerenciamento.js"></script>
 </body>
 </html>
+
+
+
+
